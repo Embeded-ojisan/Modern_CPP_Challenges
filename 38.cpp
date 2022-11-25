@@ -24,4 +24,16 @@ public:
         }
     }
     
+    void persist(fs::path const & path)
+    {
+        logfile.close();
+        fs::rename(logpath, path);
+        logpath.clear();
+    }
+
+    logger& operator<<(std::string const & message)
+    {
+        logfile << message.c_str() << '\n';
+        return *this;
+    }
 }
