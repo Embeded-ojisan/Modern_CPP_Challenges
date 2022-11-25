@@ -37,3 +37,19 @@ public:
         return *this;
     }
 }
+
+int main()
+{
+    logger log;
+
+    try
+    {
+        log << "this is a line." << "and this is another one";
+        throw std::runtime_error("error");
+    }
+    catch(...)
+    {
+        log.persist(R"(lastlog.txt)");
+    }
+    
+}
